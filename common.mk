@@ -363,5 +363,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
 
+# S Pen
+ifeq ($(TARGET_HAVE_SPEN),true)
+PRODUCT_PACKAGES += \
+    SPenActions
+endif
+
 # Inherit from the proprietary files makefile.
 $(call inherit-product, vendor/samsung/sm8550-common/sm8550-common-vendor.mk)
