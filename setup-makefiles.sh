@@ -13,6 +13,8 @@ if [[ ! -d "${MY_DIR}" ]]; then MY_DIR="${PWD}"; fi
 
 ANDROID_ROOT="${MY_DIR}/../../.."
 
+export TARGET_ENABLE_CHECKELF=true
+
 HELPER="${ANDROID_ROOT}/tools/extract-utils/extract_utils.sh"
 if [ ! -f "${HELPER}" ]; then
     echo "Unable to find helper script at ${HELPER}"
@@ -22,7 +24,14 @@ source "${HELPER}"
 
 function vendor_imports() {
     cat <<EOF >>"$1"
-		"device/foo/bar-common",
+		"device/samsung/sm8550-common",
+		"hardware/qcom-caf/sm8550",
+		"hardware/qcom-caf/wlan",
+		"hardware/samsung",
+		"vendor/qcom/opensource/commonsys/display",
+		"vendor/qcom/opensource/commonsys-intf/display",
+		"vendor/qcom/opensource/dataservices",
+		"vendor/samsung/sm8550-common",
 EOF
 }
 
@@ -32,11 +41,15 @@ function lib_to_package_fixup_vendor_variants() {
     fi
 
     case "$1" in
-        com.qualcomm.qti.dpm.api@1.0 | \
-            vendor.qti.imsrtpservice@3.0)
-            echo "$1-vendor"
+        vendor.qti.diaghal@1.0 | \
+            libsecril-client | \
+            vendor.qti.hardware.fm@1.0 | \
+            libhyper)
+            echo "$1_vendor"
             ;;
-        libwpa_client) ;;
+        libagmclient | \
+            libpalclient | \
+            libwpa_client) ;;
         *)
             return 1
             ;;
@@ -53,7 +66,7 @@ function lib_to_package_fixup() {
 setup_vendor "${DEVICE_COMMON}" "${VENDOR_COMMON:-$VENDOR}" "${ANDROID_ROOT}" true
 
 # Warning headers and guards
-write_headers "**** FILL IN ALL DEVICE NAMES, SPACE DELIMITED ****"
+write_headers "dm1q dm2q dm3q"
 
 # The standard common blobs
 write_makefiles "${MY_DIR}/proprietary-files.txt"
@@ -71,13 +84,6 @@ if [ -s "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files.txt" ]; then
 
     # The standard device blobs
     write_makefiles "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files.txt"
-
-    if [ -f "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files-carriersettings.txt" ]; then
-        write_makefiles "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files-carriersettings.txt"
-
-        write_rro_package "CarrierConfigOverlay" "com.android.carrierconfig" product
-        write_single_product_packages "CarrierConfigOverlay"
-    fi
 
     if [ -f "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-firmware.txt" ]; then
         append_firmware_calls_to_makefiles "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-firmware.txt"
