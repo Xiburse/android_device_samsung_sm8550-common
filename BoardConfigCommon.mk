@@ -7,6 +7,7 @@
 BUILD_BROKEN_DUP_RULES := true
 
 COMMON_PATH := device/samsung/sm8550-common
+DEVICE_PATH := device/samsung/gts9pwifi
 
 # Architecture
 TARGET_ARCH := arm64
@@ -105,6 +106,17 @@ TARGET_KERNEL_SOURCE := kernel/samsung/sm8550
 
 # Kernel modules
 TARGET_KERNEL_EXT_MODULE_ROOT := kernel/samsung/sm8550-modules
+
+# Kernel - prebuilt
+TARGET_FORCE_PREBUILT_KERNEL := true
+ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
+# TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
+BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
+BOARD_INCLUDE_DTB_IN_BOOTIMG := 
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
+BOARD_KERNEL_SEPARATED_DTBO := 
+endif
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
