@@ -14,6 +14,9 @@ genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i
 genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i2c-57/57-0066/max77705-charger/power_supply/max77705-charger"        u:object_r:vendor_sysfs_battery:s0
 genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i2c-57/57-0066/max77705-charger/power_supply/max77705-otg"            u:object_r:vendor_sysfs_battery:s0
 genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i2c-57/57-0066/max77705-fuelgauge/power_supply/max77705-fuelgauge"    u:object_r:vendor_sysfs_battery:s0
+genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i2c-56/56-0049/sm5714-charger/power_supply/sm5714-charger"            u:object_r:vendor_sysfs_battery:s0
+genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i2c-56/56-0049/sm5714-charger/power_supply/sm5714-otg"                u:object_r:vendor_sysfs_battery:s0
+genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i2c-56/56-0049/sm5714-fuelgauge/power_supply/sm5714-fuelgauge"        u:object_r:vendor_sysfs_battery:s0
 
 # Camera
 genfscon sysfs "/devices/virtual/camera"                          u:object_r:vendor_sysfs_camera:s0
@@ -66,7 +69,8 @@ genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i
 genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i2c-56/56-0049/sm5714-fuelgauge/wakeup"                                      u:object_r:sysfs_wakeup:s0
 genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i2c-56/56-0049/wakeup"                                                       u:object_r:sysfs_wakeup:s0
 genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a4000.i2c/i2c-57/57-0033/wakeup"                                                       u:object_r:sysfs_wakeup:s0
-
+genfscon sysfs "/devices/platform/soc/8c0000.qcom,qupv3_2_geni_se/88c000.i2c/i2c-62/62-0020/wakeup"                                                         u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a9c000.qcom,qup_hsuart/wakeup"                                                            u:object_r:sysfs_wakeup:s0
 # Sensor
 genfscon sysfs "/devices/virtual/sensor_event"                                               u:object_r:vendor_sysfs_sensors:s0
 genfscon sysfs "/devices/virtual/sensors"                                                    u:object_r:vendor_sysfs_sensors:s0
