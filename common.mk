@@ -19,6 +19,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/non_ab_device.mk)
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
+$(call soong_config_set,rfs,mpss_firmware_symlink_target,firmware_modem)
+
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@7.1-impl.samsung-sm8550 \
