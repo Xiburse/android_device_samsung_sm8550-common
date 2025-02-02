@@ -4,9 +4,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Add common symlinks definitions for Qualcomm Samsung
-$(call inherit-product, hardware/samsung/symlinks/qcom-common.mk)
-
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
@@ -248,6 +245,14 @@ PRODUCT_PACKAGES += \
     WifiResCommon \
     WifiResTarget \
     WifiResTarget_spf
+
+# Partitions
+PRODUCT_PACKAGES += \
+    vendor_firmware-modem_mountpoint \
+    vendor_dsp_mountpoint \
+    vendor_firmware_mnt_mountpoint \
+    vendor_bt_firmware_mountpoint \
+    vendor_vm-system_mountpoint
 
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
